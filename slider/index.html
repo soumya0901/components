@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		.sliderContainer{
+			position:relative;
+		}
+		.sliderContainer .sliderContent{
+			position:absolute;
+			top:0; left:0; right:0; bottom:0;
+		}
+		.sliderContent .slide{
+			float:left;
+		}
+	</style>
+</head>
+<body>
+
+<div id="slider1" class="sliderContainer">
+	<div class="sliderContent">
+		<div class="slide">abcd</div>
+		<div class="slide">efgh</div>
+		<div class="slide">ijkl</div>
+		<div class="slide">mnop</div>
+	</div>
+</div>
+
+
+	<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+	
+	<script>
+		$.fn.customSlider = function(options){
+			var defaultOptions = {
+				slidesToShow : 1,
+				slidesToMove : 1,
+				slideAnimation : 'slide',
+				startFromSlide : 1
+			};
+			
+			var args = $.extend({},defaultOptions, options);
+			slideWidth
+			
+			
+			
+			
+		};
+		
+	
+		$(function(){
+		
+			$('.modalContainer').on('click','.modalClose',function(e){
+				e.preventDefault();
+				$(this).closest('.modalContainer').addClass('hidden');
+			});
+			
+			$('body').on('keyup',function(e){
+				if(e.keyCode == 27 || e.which == 27){
+					$('.modalContainer:visible').addClass('hidden');
+				}
+			});
+		
+			$('a').click(function(){
+				$('#lightBox1').removeClass('hidden');
+				$('.modalContent','#lightBox1').centerElement();
+			});
+		
+		});
+	
+	</script>
+</body>
+</html>

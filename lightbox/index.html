@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		.hidden{
+			display:none;
+		}
+		.modalContainer{
+			position:absolute;
+			top:0; left:0; right:0; bottom:0;
+			z-index:999999;
+		}
+		.modalContainer .modalOverlay{
+			width:100%; height:100%;
+			background:#111;
+			background:rgba(10,10,10,0.75);
+			z-index:1;
+		}
+		.modalContainer .modalContent{
+			position:fixed;
+			min-width:400px;
+			min-height:400px;
+			background:#fff;
+			z-index:2;
+		}
+	</style>
+</head>
+<body>
+
+<a href="#abc">Open lightbox</a>
+<div id="lightBox1" class="modalContainer hidden">
+	<div class="modalOverlay"></div>
+	<div class="modalContent">
+		<a class="modalClose" href="#">X</a>
+		asdsadsadasd
+		asdsadasdasdsad
+		asdasdasdasdasdas
+		
+	</div>
+</div>
+
+
+	<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>
+	
+	<script>
+		$.fn.centerElement = function(){
+			var documentWidth = $(window).width(), documentHeight = $(window).height();
+			var elementWidth = this.outerWidth(), elementHeight = this.outerHeight();
+			var offsetLeftToSet = (documentWidth/2 - elementWidth/2) + "px";
+			var offsetTopToSet = (documentHeight/2 - elementHeight/2);
+			//if(offsetTopToSet<50) { offsetTopToSet = 50; }
+			offsetTopToSet += "px";
+			this.css({'left':offsetLeftToSet, 'top' : offsetTopToSet});
+		};
+		
+	
+		$(function(){
+		
+			$('.modalContainer').on('click','.modalClose',function(e){
+				e.preventDefault();
+				$(this).closest('.modalContainer').addClass('hidden');
+			});
+			
+			$('body').on('keyup',function(e){
+				if(e.keyCode == 27 || e.which == 27){
+					$('.modalContainer:visible').addClass('hidden');
+				}
+			});
+		
+			$('a').click(function(){
+				$('#lightBox1').removeClass('hidden');
+				$('.modalContent','#lightBox1').centerElement();
+			});
+		
+		});
+	
+	</script>
+</body>
+</html>
