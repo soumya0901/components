@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		.row{width:600px; overflow:hidden; border:1px solid red; margin:0 auto 10px;}
+		.left{float:left; width:100px; background:#f2f2f2; padding:10px;}
+		.right{float:right; width:400px; background:#f2f2f2; padding:10px;}
+		.left_right{display:block; overflow:hidden; padding:10px; background:#c6c6c6; margin-bottom:5px;}
+		.oneLine{display:block; background:yellow;}
+		.lastRow{border:1px solid red; padding:5px; width:600px; margin:0 auto;}
+		.lastRow a{margin-right:20px; color:red; padding:5px 10px; background:yellow;}
+		.hidden{ display:none; }
+	</style>
+	<div class="container">
+		<div class="row">
+			<div class="left">
+				<input type="radio" name="choose" />
+			</div>
+			<div class="right hidden">
+				Your Address Area
+			</div>
+		</div>
+		<div class="row">
+			<div class="left">
+				<input type="radio" name="choose" />
+			</div>
+			<div class="right hidden">
+				Your Address Area
+			</div>
+		</div>
+
+		<div class="spRow">
+			<div class="oneLine">Hello</div>
+			
+			<div class="row firstRow hidden">
+				<div class="left">
+					<input type="radio" name="choose" />
+				</div>
+				<div class="right hidden">
+					Your Address Area1111
+				</div>
+			</div>
+			<div class="row secondRow hidden">		
+				<div class="left">
+					<input type="radio" name="choose" />
+				</div>
+				<div class="right hidden">
+					Your Address Area2222
+				</div>
+			</div>
+		</div>
+		<div class="lastRow">
+			<a href="#"><span>abc</span></a>
+			<a href="#">def</a>
+		</div>
+	</div>
+	<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>	
+	<script>		
+		$(function(){
+			$('.container').on('change','.row .left input[type="radio"]',function(e){
+				var checked = $(this).is(':checked');
+				console.log(checked);
+				if(checked){
+					$(this).closest('.row').find('.right').removeClass('hidden');
+				}else{
+					$(this).closest('.row').find('.right').addClass('hidden');
+				}
+				$('.container .row .left input[type="radio"]').not(':checked').each(function(){
+					$(this).closest('.row').find('.right:visible').addClass('hidden');
+				});
+			});
+			
+			$('.container').on('click', '.lastRow a', function(){
+				var index = $(this).closest('.lastRow').find('a').index($(this));
+				var $row = $(this).closest('.container').find('.spRow .row').eq(index);
+				$(this).closest('.container').find('.spRow .row:visible').addClass('hidden');
+				$row.removeClass('hidden');
+				$row.find('.left input[type="radio"]').click();
+			});
+		});
+	
+	</script>
+</body>
+</html>
