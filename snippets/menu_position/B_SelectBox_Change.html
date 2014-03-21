@@ -1,0 +1,38 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+	<script type="text/javascript" src="../js/jquery-1.11.0.min.js"></script>	
+		<style type="text/css">
+			*{margin:0; padding:0; list-style: none;}
+			.container{width: 420px; margin: 0 auto; height: 200px; overflow: auto; background: #c0c0c0; padding:10px;}
+			.container div{background: orange; margin-bottom: 10px; display: none;}
+			select{margin-bottom: 10px;}
+		</style>
+		<script>
+	        $(function($) {
+	        	$('.container').on('change', '.ggg', function(){
+			        $('.container div').hide();
+	        		var cur_tab = $(this).val();
+			        $('#' + cur_tab).show();
+	       		});
+	        });
+		 </script>
+	</head>
+	<body>
+		<div class="container">
+			<select class="ggg">
+				<option value="Select Option">Select Option</option>
+				<option value="one">Div 1</option>
+				<option value="two">Div 2</option>
+				<option value="three">Div 3</option>
+			</select>
+
+				<div id="one">Div 1 showing</div>
+				<div id="two">Div 2 showing</div>
+				<div id="three">Div 3 showing</div>
+		
+		</div>
+	</body>
+</html>
